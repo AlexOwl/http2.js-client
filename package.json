@@ -1,0 +1,84 @@
+{
+  "name": "http2.js-client",
+  "description": "Patch http2-client to use custom http2.js (node-http2)",
+  "license": "MIT",
+  "author": {
+    "name": "Alex Owl",
+    "email": "AlexOwl@protonmail.com",
+    "url": "https://AlexOwl.github.com/"
+  },
+  "homepage": "https://github.com/AlexOwl/http2.js-client#readme",
+  "repository": "AlexOwl/http2.js-client",
+  "bugs": {
+    "email": "AlexOwl@protonmail.com",
+    "url": "https://github.com/AlexOwl/http2.js-client/issues"
+  },
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc -w",
+    "clean": "rimraf lib",
+    "format": "run-s format:* -l",
+    "format:package": "prettier-package-json --write --expand-users",
+    "format:prettier": "prettier-tslint fix",
+    "format:tslint": "tslint -p tsconfig.json --fix",
+    "install-peers": "npm-install-peers",
+    "prepare": "run-s install-peers format test clean build",
+    "start": "node lib",
+    "start:dev": "node --inspect -r ./node_modules/ts-node/register src",
+    "start:dev:watch": "nodemon --exec npm run start:dev",
+    "test": "run-s test:* -ns",
+    "test:jest": "jest --passWithNoTests",
+    "test:tsc": "tsc --noEmit"
+  },
+  "dependencies": {
+    "import-locals": "1"
+  },
+  "peerDependencies": {
+    "http2-client": "^1.3",
+    "http2.js": "4"
+  },
+  "devDependencies": {
+    "@types/jest": "24.0.0",
+    "@types/node": "latest",
+    "jest": "24.0.0",
+    "nodemon": "latest",
+    "npm-install-peers": "latest",
+    "npm-run-all": "latest",
+    "prettier": "latest",
+    "prettier-package-json": "latest",
+    "prettier-tslint": "latest",
+    "rimraf": "latest",
+    "ts-jest": "24.0.0",
+    "ts-node": "latest",
+    "tslint": "latest",
+    "tslint-config-prettier": "latest",
+    "tslint-config-standard": "latest",
+    "typescript": "latest"
+  },
+  "keywords": [
+    "http2",
+    "http2-client",
+    "http2.js",
+    "node-http2"
+  ],
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**",
+      "!**/@types/**",
+      "!**/index.ts"
+    ],
+    "coverageReporters": [
+      "text"
+    ],
+    "verbose": true,
+    "bail": true
+  }
+}
